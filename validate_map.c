@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:40:06 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/08 17:53:21 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:11:17 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,21 @@ int	is_valid_map(t_data *data)
 	return (1);
 }
 
-int	check_ppos_and_exit(t_data *data)
+void	check_special_tile(t_data *data, t_coor *coor, int *pstarts, int *exits)
+{
+	if (data->map[coor->y][coor->x] == PSTART)
+	{
+		(*pstarts)++;
+		data->ppos.x = coor->x;
+		data->ppos.y = coor->y;
+	}
+	else if (data->map[coor->y][coor->x] == MAPEXIT)
+		(*exits)++;
+	else if (data->map[coor->y][coor->x] == COLLECTIBLE)
+		data->collectibles++;
+}
+
+int	check_special_tiles(t_data *data)
 {
 	t_coor	coor;
 	int		exits;
@@ -65,16 +79,7 @@ int	check_ppos_and_exit(t_data *data)
 	{
 		coor.x = -1;
 		while (++(coor.x) < data->map_width)
-		{
-			if (data->map[coor.y][coor.x] == PSTART)
-			{
-				pstarts++;
-				data->ppos.x = coor.x;
-				data->ppos.y = coor.y;
-			}
-			else if (data->map[coor.y][coor.x] == MAPEXIT)
-				exits++;
-		}
+			check_special_tile(data, &coor, &pstarts, &exits);
 	}
 	if (pstarts != 1 || exits != 1)
 		return (-1);

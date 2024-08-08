@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:42 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/08 17:54:29 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:14:53 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	init(t_data *data)
 	data->width = TILE_WIDTH * data->map_width;
 	data->height = TILE_HEIGHT * data->map_height;
 	data->collected = 0;
-	data->collectibles = 0;
 	if (data->mlx == NULL)
 		return (-1);
 	data->window = mlx_new_window(data->mlx, data->width, data->height,
@@ -55,11 +54,12 @@ static void	init_events(t_data *data)
 static int	check_input(t_data *data, int argc, char *argv[])
 {
 	data->map = NULL;
+	data->collectibles = 0;
 	if (argc != 2)
 		return (err_handl("Usage: so_long <map name>", data));
 	if (read_map(data, argv[1]) < 0)
 		return (err_handl("Map error", data));
-	if (check_ppos_and_exit(data) < 0)
+	if (check_special_tiles(data) < 0)
 		return (err_handl("Map error", data));
 	if (!is_valid_map(data))
 		return (err_handl("Map error", data));

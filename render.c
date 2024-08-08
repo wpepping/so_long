@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:41:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/08 17:37:15 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:06:48 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,6 @@ void	init_map(t_data *data)
 		coor.x = 0;
 		while (coor.x < data->map_width)
 		{
-			if (data->map[coor.y][coor.x] == PSTART)
-			{
-				data->ppos.x = coor.x;
-				data->ppos.y = coor.y;
-			}
-			if (data->map[coor.y][coor.x] == COLLECTIBLE)
-				data->collectibles++;
 			draw_tile(data, coor);
 			coor.x++;
 		}
