@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:44 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/09 14:15:25 by wouter           ###   ########.fr       */
+/*   Updated: 2024/08/09 19:15:28 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	move_player(t_data *data, int x, int y);
 int		read_map(t_data *data, char *fname);
 int		is_valid_map(t_data *data);
 int		check_special_tiles(t_data *data);
+void	init_textures(t_data *data);
+void	clear_textures(t_data *data);
 void	ft_putendl_fd(char *s, int fd);
 char	*get_next_line(int fd);
 

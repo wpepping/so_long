@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:00:49 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/05 16:08:39 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:55:30 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static int	process_restbuff(char *restbuff, char **result, int *strbuff)
 	if (result == NULL)
 		return (-1);
 	copy_restbuff(restbuff, restbuff, i + 1);
-	*result = ft_strdup(*result);
 	return (res_nr);
 }
 
@@ -95,7 +94,6 @@ static int	read_from_file(char *readbuff, char **result, int *strbuff, int fd)
 		bytes_read = read(fd, readbuff, BUFFER_SIZE);
 		readbuff[bytes_read] = '\0';
 	}
-	*result = ft_strdup(*result);
 	return (-1);
 }
 

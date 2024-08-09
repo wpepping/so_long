@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:27:46 by wouter            #+#    #+#             */
-/*   Updated: 2024/08/09 14:28:25 by wouter           ###   ########.fr       */
+/*   Updated: 2024/08/09 19:17:28 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static int	err_handl(char *msg, t_data *data)
 
 static int	init(t_data *data)
 {
-	data->mlx = NULL;
-	data->window = NULL;
 	data->mlx = mlx_init();
 	data->width = TILE_WIDTH * data->map_width;
 	data->height = TILE_HEIGHT * data->map_height;
@@ -53,6 +51,8 @@ static void	init_events(t_data *data)
 
 static int	check_input(t_data *data, int argc, char *argv[])
 {
+	data->mlx = NULL;
+	data->window = NULL;
 	data->map = NULL;
 	data->collectibles = 0;
 	if (argc != 2)
@@ -78,6 +78,7 @@ int	main(int argc, char *argv[])
 	init_events(&data);
 	mlx_loop(data.mlx);
 	mlx_destroy_window(data.mlx, data.window);
+	clear_textures(&data);
 	mlx_destroy_display(data.mlx);
 	free(data.mlx);
 	free_map(data.map);

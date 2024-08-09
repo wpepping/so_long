@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:31:33 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/05 16:49:38 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:08:18 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,13 @@ char	*ft_strdup(char *s)
 		i++;
 	}
 	dest[i] = '\0';
-	free(s);
 	return (dest);
 }
 
 void	*free_and_return(void *return_val, char *str1, char *str2, char **str3)
 {
+	char	*result;
+
 	if (str1 != NULL)
 		free(str1);
 	if (str2 != NULL)
@@ -108,6 +109,12 @@ void	*free_and_return(void *return_val, char *str1, char *str2, char **str3)
 	{
 		free(*str3);
 		*str3 = NULL;
+	}
+	if (return_val != NULL)
+	{
+		result = ft_strdup(return_val);
+		free(return_val);
+		return (result);
 	}
 	return (return_val);
 }

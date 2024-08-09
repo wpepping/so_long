@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:41:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/09 14:24:15 by wouter           ###   ########.fr       */
+/*   Updated: 2024/08/09 19:12:27 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,8 @@ static void	putimg(t_data *data, void *img, t_coor coor)
 		coor.x * TILE_WIDTH, coor.y * TILE_HEIGHT);
 }
 
-static void	init_textures(t_data *data)
-{
-	int	i;
-
-	data->textures.background = mlx_xpm_file_to_image(data->mlx,
-			"textures/background.xpm", &i, &i);
-	data->textures.player = mlx_xpm_file_to_image(data->mlx,
-			"textures/player.xpm", &i, &i);
-	data->textures.wall[0] = mlx_xpm_file_to_image(data->mlx,
-			"textures/rock1.xpm", &i, &i);
-	data->textures.wall[1] = mlx_xpm_file_to_image(data->mlx,
-			"textures/rock2.xpm", &i, &i);
-	data->textures.wall[2] = mlx_xpm_file_to_image(data->mlx,
-			"textures/rock3.xpm", &i, &i);
-	data->textures.weapon1 = mlx_xpm_file_to_image(data->mlx,
-			"textures/weaponR1.xpm", &i, &i);
-	data->textures.weapon2 = mlx_xpm_file_to_image(data->mlx,
-			"textures/weaponR2.xpm", &i, &i);
-	data->textures.weapon3 = mlx_xpm_file_to_image(data->mlx,
-			"textures/weaponR3.xpm", &i, &i);
-	data->textures.target = mlx_xpm_file_to_image(data->mlx,
-			"textures/crosshair_small.xpm", &i, &i);
-}
-
 static void	draw_tile(t_data *data, t_coor coor)
 {
-	void	**walls;
-
 	if (coor.x == data->ppos.x && coor.y == data->ppos.y)
 		putimg(data, data->textures.player, data->ppos);
 	else if (data->map[coor.y][coor.x] == WALL)
