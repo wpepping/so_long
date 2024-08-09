@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:44 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/08 18:08:40 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:15:25 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ typedef struct s_textures
 {
 	void	*background;
 	void	*player;
-	void	*rock1;
-	void	*rock2;
-	void	*rock3;
+	void	*wall[3];
 	void	*weapon1;
 	void	*weapon2;
 	void	*weapon3;
