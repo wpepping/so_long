@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:36:28 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/11 16:36:36 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 18:36:06 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	update_enemy(t_data *d)
 	e = &d->enemy;
 	if (currtime() - e->movetime >= 500)
 	{
-		while (d->map[e->dir_y + e->pos.y][e->dir_x + e->pos.x] == WALL
-			|| d->map[e->dir_y + e->pos.y][e->dir_x + e->pos.x] == COLLECTIBLE)
+		while (d->map[e->dir_y + e->pos.y][e->dir_x + e->pos.x] == WALL)
 			random_direction(e);
 		pos_old.x = e->pos.x;
 		pos_old.y = e->pos.y;
