@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:41:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/11 16:44:17 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:17:17 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_tile(t_data *data, t_coor coor)
 		put_tile(data, data->textures.enemy, coor);
 	else if (coor.x == data->ppos.x && coor.y == data->ppos.y)
 	{
-		if (data->wasted)
+		if (data->end_game)
 			put_tile(data, data->textures.player_dead, coor);
 		else
 			put_tile(data, data->textures.player, coor);
@@ -57,41 +57,13 @@ void	init_map(t_data *data)
 	}
 }
 
-void	wasted(t_data *data)
+void	end_game(t_data *data, void *image)
 {
 	t_coor	coor;
 
-	coor.x = (data->width - WASTED_TILE_WIDTH) / 2;
-	coor.y = (data->height - WASTED_TILE_HEIGHT) / 2;
-	mlx_put_image_to_window(data->mlx, data->window, data->textures.wasted,
-		coor.x, coor.y);
-	data->wasted = currtime();
+	coor.x = (data->width - END_TILE_WIDTH) / 2;
+	coor.y = (data->height - END_TILE_HEIGHT) / 2;
+	mlx_put_image_to_window(data->mlx, data->window, image, coor.x, coor.y);
+	data->end_game = currtime();
 }
 
-void	move_player(t_data *data, int x, int y)
-{
-	t_coor	pos_old;
-
-	if (data->wasted)
-		return ;
-	pos_old.x = data->ppos.x;
-	pos_old.y = data->ppos.y;
-	if (data->map[data->ppos.y + y][data->ppos.x + x] != WALL)
-	{
-		data->ppos.x += x;
-		data->ppos.y += y;
-		if (data->map[data->ppos.y][data->ppos.x] == COLLECTIBLE)
-		{
-			data->map[data->ppos.y][data->ppos.x] = EMPTY;
-			data->collected++;
-		}
-		if ((data->map[data->ppos.y][data->ppos.x] == MAPEXIT)
-			&& data->collected == data->collectibles)
-			mlx_loop_end(data->mlx);
-		if (data->ppos.x == data->enemy.pos.x
-			&& data->ppos.y == data->enemy.pos.y)
-			wasted(data);
-	}
-	draw_tile(data, pos_old);
-	draw_tile(data, data->ppos);
-}

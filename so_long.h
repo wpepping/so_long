@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:44 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/11 16:48:55 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:17:18 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 # define TILE_WIDTH 64
 # define TILE_HEIGHT 64
-# define WASTED_TILE_WIDTH 380
-# define WASTED_TILE_HEIGHT 160
+# define END_TILE_WIDTH 380
+# define END_TILE_HEIGHT 160
 
 # define EMPTY 48
 # define WALL 49
@@ -58,6 +58,7 @@ typedef struct s_textures
 	void	*target;
 	void	*enemy;
 	void	*wasted;
+	void	*youwin;
 }	t_textures;
 
 typedef struct s_enemy
@@ -79,7 +80,7 @@ typedef struct s_data
 	char		**map;
 	int			collectibles;
 	int			collected;
-	long		wasted;
+	long		end_game;
 	int			dummy;
 	t_enemy		enemy;
 	t_textures	textures;
@@ -104,6 +105,6 @@ void	clear_textures(t_data *data);
 void	ft_putendl_fd(char *s, int fd);
 char	*get_next_line(int fd);
 int		update_enemy(t_data *data);
-void	wasted(t_data *data);
+void	end_game(t_data *data, void *image);
 
 #endif

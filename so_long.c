@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:27:46 by wouter            #+#    #+#             */
-/*   Updated: 2024/08/11 16:55:33 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:17:17 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	init(t_data *data)
 	data->collected = 0;
 	data->enemy.dir_x = 1;
 	data->enemy.dir_y = 0;
-	data->wasted = 0;
+	data->end_game = 0;
 	if (data->mlx == NULL)
 		return (-1);
 	data->window = mlx_new_window(data->mlx, data->width, data->height,
