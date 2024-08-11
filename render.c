@@ -6,30 +6,37 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:41:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/09 19:12:27 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:44:17 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	putimg(t_data *data, void *img, t_coor coor)
+static void	put_tile(t_data *data, void *img, t_coor coor)
 {
 	mlx_put_image_to_window(data->mlx, data->window, img,
 		coor.x * TILE_WIDTH, coor.y * TILE_HEIGHT);
 }
 
-static void	draw_tile(t_data *data, t_coor coor)
+void	draw_tile(t_data *data, t_coor coor)
 {
-	if (coor.x == data->ppos.x && coor.y == data->ppos.y)
-		putimg(data, data->textures.player, data->ppos);
+	if (coor.x == data->enemy.pos.x && coor.y == data->enemy.pos.y)
+		put_tile(data, data->textures.enemy, coor);
+	else if (coor.x == data->ppos.x && coor.y == data->ppos.y)
+	{
+		if (data->wasted)
+			put_tile(data, data->textures.player_dead, coor);
+		else
+			put_tile(data, data->textures.player, coor);
+	}
 	else if (data->map[coor.y][coor.x] == WALL)
-		putimg(data, data->textures.wall[rand() % 3], coor);
+		put_tile(data, data->textures.wall[rand() % 3], coor);
 	else if (data->map[coor.y][coor.x] == COLLECTIBLE)
-		putimg(data, data->textures.weapon1, coor);
+		put_tile(data, data->textures.weapon1, coor);
 	else if (data->map[coor.y][coor.x] == MAPEXIT)
-		putimg(data, data->textures.target, coor);
+		put_tile(data, data->textures.target, coor);
 	else
-		putimg(data, data->textures.background, coor);
+		put_tile(data, data->textures.background, coor);
 }
 
 void	init_map(t_data *data)
@@ -50,10 +57,23 @@ void	init_map(t_data *data)
 	}
 }
 
+void	wasted(t_data *data)
+{
+	t_coor	coor;
+
+	coor.x = (data->width - WASTED_TILE_WIDTH) / 2;
+	coor.y = (data->height - WASTED_TILE_HEIGHT) / 2;
+	mlx_put_image_to_window(data->mlx, data->window, data->textures.wasted,
+		coor.x, coor.y);
+	data->wasted = currtime();
+}
+
 void	move_player(t_data *data, int x, int y)
 {
 	t_coor	pos_old;
 
+	if (data->wasted)
+		return ;
 	pos_old.x = data->ppos.x;
 	pos_old.y = data->ppos.y;
 	if (data->map[data->ppos.y + y][data->ppos.x + x] != WALL)
@@ -68,6 +88,9 @@ void	move_player(t_data *data, int x, int y)
 		if ((data->map[data->ppos.y][data->ppos.x] == MAPEXIT)
 			&& data->collected == data->collectibles)
 			mlx_loop_end(data->mlx);
+		if (data->ppos.x == data->enemy.pos.x
+			&& data->ppos.y == data->enemy.pos.y)
+			wasted(data);
 	}
 	draw_tile(data, pos_old);
 	draw_tile(data, data->ppos);

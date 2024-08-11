@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 19:09:39 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/09 19:19:19 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:31:35 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	is_valid(char *line, int width)
 			&& *line != WALL
 			&& *line != COLLECTIBLE
 			&& *line != MAPEXIT
-			&& *line != PSTART)
+			&& *line != PSTART
+			&& *line != ESTART)
 			return (0);
 		line++;
 	}

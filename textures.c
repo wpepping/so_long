@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 19:12:34 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/09 19:14:53 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:50:41 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,37 @@
 
 void	init_textures(t_data *data)
 {
-	int	i;
-
 	data->textures.background = mlx_xpm_file_to_image(data->mlx,
-			"textures/background.xpm", &i, &i);
+			"textures/background.xpm", &data->dummy, &data->dummy);
 	data->textures.player = mlx_xpm_file_to_image(data->mlx,
-			"textures/player.xpm", &i, &i);
+			"textures/player.xpm", &data->dummy, &data->dummy);
+	data->textures.player_dead = mlx_xpm_file_to_image(data->mlx,
+			"textures/player_dead.xpm", &data->dummy, &data->dummy);
 	data->textures.wall[0] = mlx_xpm_file_to_image(data->mlx,
-			"textures/rock1.xpm", &i, &i);
+			"textures/rock1.xpm", &data->dummy, &data->dummy);
 	data->textures.wall[1] = mlx_xpm_file_to_image(data->mlx,
-			"textures/rock2.xpm", &i, &i);
+			"textures/rock2.xpm", &data->dummy, &data->dummy);
 	data->textures.wall[2] = mlx_xpm_file_to_image(data->mlx,
-			"textures/rock3.xpm", &i, &i);
+			"textures/rock3.xpm", &data->dummy, &data->dummy);
 	data->textures.weapon1 = mlx_xpm_file_to_image(data->mlx,
-			"textures/weaponR1.xpm", &i, &i);
+			"textures/weaponR1.xpm", &data->dummy, &data->dummy);
 	data->textures.weapon2 = mlx_xpm_file_to_image(data->mlx,
-			"textures/weaponR2.xpm", &i, &i);
+			"textures/weaponR2.xpm", &data->dummy, &data->dummy);
 	data->textures.weapon3 = mlx_xpm_file_to_image(data->mlx,
-			"textures/weaponR3.xpm", &i, &i);
+			"textures/weaponR3.xpm", &data->dummy, &data->dummy);
 	data->textures.target = mlx_xpm_file_to_image(data->mlx,
-			"textures/crosshair_small.xpm", &i, &i);
+			"textures/crosshair_small.xpm", &data->dummy, &data->dummy);
+	data->textures.enemy = mlx_xpm_file_to_image(data->mlx,
+			"textures/enemy.xpm", &data->dummy, &data->dummy);
+	data->textures.wasted = mlx_xpm_file_to_image(data->mlx,
+			"textures/wasted.xpm", &data->dummy, &data->dummy);
 }
 
 void	clear_textures(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->textures.background);
 	mlx_destroy_image(data->mlx, data->textures.player);
+	mlx_destroy_image(data->mlx, data->textures.player_dead);
 	mlx_destroy_image(data->mlx, data->textures.wall[0]);
 	mlx_destroy_image(data->mlx, data->textures.wall[1]);
 	mlx_destroy_image(data->mlx, data->textures.wall[2]);
@@ -47,4 +52,6 @@ void	clear_textures(t_data *data)
 	mlx_destroy_image(data->mlx, data->textures.weapon2);
 	mlx_destroy_image(data->mlx, data->textures.weapon3);
 	mlx_destroy_image(data->mlx, data->textures.target);
+	mlx_destroy_image(data->mlx, data->textures.enemy);
+	mlx_destroy_image(data->mlx, data->textures.wasted);
 }

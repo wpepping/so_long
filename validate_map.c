@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:40:06 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/08 18:11:17 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:50:07 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,42 @@ int	is_valid_map(t_data *data)
 	return (1);
 }
 
-void	check_special_tile(t_data *data, t_coor *coor, int *pstarts, int *exits)
+void	check_special_tile(t_data *data, t_coor *coor, t_tilecount *tc)
 {
 	if (data->map[coor->y][coor->x] == PSTART)
 	{
-		(*pstarts)++;
+		(tc->pstarts)++;
 		data->ppos.x = coor->x;
 		data->ppos.y = coor->y;
 	}
+	if (data->map[coor->y][coor->x] == ESTART)
+	{
+		(tc->estarts)++;
+		data->enemy.pos.x = coor->x;
+		data->enemy.pos.y = coor->y;
+	}
 	else if (data->map[coor->y][coor->x] == MAPEXIT)
-		(*exits)++;
+		(tc->exits)++;
 	else if (data->map[coor->y][coor->x] == COLLECTIBLE)
 		data->collectibles++;
 }
 
 int	check_special_tiles(t_data *data)
 {
-	t_coor	coor;
-	int		exits;
-	int		pstarts;
+	t_coor		coor;
+	t_tilecount	tc;
 
 	coor.y = -1;
-	exits = 0;
-	pstarts = 0;
+	tc.exits = 0;
+	tc.pstarts = 0;
+	tc.estarts = 0;
 	while (++(coor.y) < data->map_height)
 	{
 		coor.x = -1;
 		while (++(coor.x) < data->map_width)
-			check_special_tile(data, &coor, &pstarts, &exits);
+			check_special_tile(data, &coor, &tc);
 	}
-	if (pstarts != 1 || exits != 1)
+	if (tc.pstarts != 1 || tc.exits != 1 || tc.estarts > 1)
 		return (-1);
 	return (0);
 }
