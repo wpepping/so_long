@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:36:28 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/12 15:03:32 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:16:28 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ int	update_enemy(t_data *d)
 		e->movetime = currtime();
 		draw_tile(d, pos_old);
 		draw_tile(d, e->pos);
-		if (d->end_game || (d->ppos.x == e->pos.x && d->ppos.y == e->pos.y))
+		if (d->end_game)
 			end_game(d, d->end_game_graphic);
+		else if ((d->ppos.x == e->pos.x && d->ppos.y == e->pos.y))
+			end_game(d, d->textures.wasted);
 
 	}
 	return (0);
