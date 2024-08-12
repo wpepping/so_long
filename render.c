@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:41:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/11 19:17:17 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:04:14 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	end_game(t_data *data, void *image)
 	coor.x = (data->width - END_TILE_WIDTH) / 2;
 	coor.y = (data->height - END_TILE_HEIGHT) / 2;
 	mlx_put_image_to_window(data->mlx, data->window, image, coor.x, coor.y);
-	data->end_game = currtime();
+	data->end_game = 1;
+	data->end_game_graphic = image;
 }
 

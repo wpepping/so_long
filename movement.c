@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:36:28 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/11 19:18:22 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:03:32 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,26 @@ static void	random_direction(t_enemy *e)
 	}
 }
 
-int	update_enemy(t_data *data)
+int	update_enemy(t_data *d)
 {
 	t_enemy	*e;
 	t_coor	pos_old;
 
-	e = &data->enemy;
-	if (!data->end_game && currtime() - e->movetime >= 500)
+	e = &d->enemy;
+	if (currtime() - e->movetime >= 500)
 	{
-		while (data->map[e->dir_y + e->pos.y][e->dir_x + e->pos.x] == WALL)
+		while (d->map[e->dir_y + e->pos.y][e->dir_x + e->pos.x] == WALL)
 			random_direction(e);
 		pos_old.x = e->pos.x;
 		pos_old.y = e->pos.y;
 		e->pos.x += e->dir_x;
 		e->pos.y += e->dir_y;
 		e->movetime = currtime();
-		draw_tile(data, pos_old);
-		draw_tile(data, e->pos);
-		if (data->ppos.x == e->pos.x && data->ppos.y == e->pos.y)
-			end_game(data, data->textures.wasted);
+		draw_tile(d, pos_old);
+		draw_tile(d, e->pos);
+		if (d->end_game || (d->ppos.x == e->pos.x && d->ppos.y == e->pos.y))
+			end_game(d, d->end_game_graphic);
+
 	}
 	return (0);
 }

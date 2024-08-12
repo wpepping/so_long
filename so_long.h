@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:44 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/11 19:17:18 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:03:49 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_data
 	int			collected;
 	long		end_game;
 	int			dummy;
+	void		*end_game_graphic;
 	t_enemy		enemy;
 	t_textures	textures;
 	t_coor		ppos;

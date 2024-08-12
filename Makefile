@@ -1,4 +1,4 @@
-SRCS = enemy.c events.c libft_utils.c read_map.c render.c so_long.c textures.c utils.c validate_map.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRCS = events.c libft_utils.c movement.c read_map.c render.c so_long.c textures.c utils.c validate_map.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
