@@ -6,14 +6,16 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 19:01:31 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/08 18:17:57 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:20:26 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	handle_loop(void)
+int	handle_loop(t_data *data)
 {
+	if (data->enemy.pos.x > -1)
+		update_enemy(data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:41:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/12 15:04:14 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:43:41 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_tile(t_data *data, t_coor coor)
 	else if (data->map[coor.y][coor.x] == WALL)
 		put_tile(data, data->textures.wall[rand() % 3], coor);
 	else if (data->map[coor.y][coor.x] == COLLECTIBLE)
-		put_tile(data, data->textures.weapon1, coor);
+		put_tile(data, data->textures.weapon[0], coor);
 	else if (data->map[coor.y][coor.x] == MAPEXIT)
 		put_tile(data, data->textures.target, coor);
 	else
@@ -67,4 +67,3 @@ void	end_game(t_data *data, void *image)
 	data->end_game = 1;
 	data->end_game_graphic = image;
 }
-

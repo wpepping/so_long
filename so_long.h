@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:44 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/12 15:03:49 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:42:28 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ typedef struct s_textures
 	void	*player;
 	void	*player_dead;
 	void	*wall[3];
-	void	*weapon1;
-	void	*weapon2;
-	void	*weapon3;
+	void	*weapon[3];
 	void	*target;
 	void	*enemy;
 	void	*wasted;
@@ -65,8 +63,7 @@ typedef struct s_enemy
 {
 	long	movetime;
 	t_coor	pos;
-	int		dir_x;
-	int		dir_y;
+	t_coor	dir;
 }	t_enemy;
 
 typedef struct s_data
@@ -92,9 +89,10 @@ void	*ft_calloc(size_t nmemb, size_t size);
 size_t	ft_strlen(const char *s);
 void	free_map(char **map);
 long	currtime(void);
+void	copy_coor(t_coor *c1, t_coor *c2);
 int		handle_close(t_data *data);
 int		handle_input(int keycode, t_data *data);
-int		handle_loop(void);
+int		handle_loop(t_data *data);
 void	init_map(t_data *data);
 void	move_player(t_data *data, int x, int y);
 void	draw_tile(t_data *data, t_coor coor);

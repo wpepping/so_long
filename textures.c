@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 19:12:34 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/11 19:05:45 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:43:17 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 static void	init_more_textures(t_data *data)
 {
-
 	data->textures.wall[0] = mlx_xpm_file_to_image(data->mlx,
 			"textures/rock1.xpm", &data->dummy, &data->dummy);
 	data->textures.wall[1] = mlx_xpm_file_to_image(data->mlx,
 			"textures/rock2.xpm", &data->dummy, &data->dummy);
 	data->textures.wall[2] = mlx_xpm_file_to_image(data->mlx,
 			"textures/rock3.xpm", &data->dummy, &data->dummy);
-	data->textures.weapon1 = mlx_xpm_file_to_image(data->mlx,
+	data->textures.weapon[0] = mlx_xpm_file_to_image(data->mlx,
 			"textures/weaponR1.xpm", &data->dummy, &data->dummy);
-	data->textures.weapon2 = mlx_xpm_file_to_image(data->mlx,
+	data->textures.weapon[1] = mlx_xpm_file_to_image(data->mlx,
 			"textures/weaponR2.xpm", &data->dummy, &data->dummy);
-	data->textures.weapon3 = mlx_xpm_file_to_image(data->mlx,
+	data->textures.weapon[2] = mlx_xpm_file_to_image(data->mlx,
 			"textures/weaponR3.xpm", &data->dummy, &data->dummy);
 }
 
@@ -56,10 +55,11 @@ void	clear_textures(t_data *data)
 	mlx_destroy_image(data->mlx, data->textures.wall[0]);
 	mlx_destroy_image(data->mlx, data->textures.wall[1]);
 	mlx_destroy_image(data->mlx, data->textures.wall[2]);
-	mlx_destroy_image(data->mlx, data->textures.weapon1);
-	mlx_destroy_image(data->mlx, data->textures.weapon2);
-	mlx_destroy_image(data->mlx, data->textures.weapon3);
+	mlx_destroy_image(data->mlx, data->textures.weapon[0]);
+	mlx_destroy_image(data->mlx, data->textures.weapon[1]);
+	mlx_destroy_image(data->mlx, data->textures.weapon[2]);
 	mlx_destroy_image(data->mlx, data->textures.target);
 	mlx_destroy_image(data->mlx, data->textures.enemy);
 	mlx_destroy_image(data->mlx, data->textures.wasted);
+	mlx_destroy_image(data->mlx, data->textures.youwin);
 }

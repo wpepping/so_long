@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:27:46 by wouter            #+#    #+#             */
-/*   Updated: 2024/08/12 15:04:46 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:48:09 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static int	init(t_data *data)
 	data->width = TILE_WIDTH * data->map_width;
 	data->height = TILE_HEIGHT * data->map_height;
 	data->collected = 0;
-	data->enemy.dir_x = 1;
-	data->enemy.dir_y = 0;
+	data->enemy.dir.x = 1;
+	data->enemy.dir.y = 0;
 	data->end_game = 0;
 	if (data->mlx == NULL)
 		return (-1);
@@ -48,7 +48,7 @@ static int	init(t_data *data)
 static void	init_events(t_data *data)
 {
 	mlx_key_hook(data->window, &handle_input, data);
-	mlx_loop_hook(data->mlx, &update_enemy, data);
+	mlx_loop_hook(data->mlx, &handle_loop, data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask,
 		&handle_close, data);
 }
