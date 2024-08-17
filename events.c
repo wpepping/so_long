@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 19:01:31 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/14 18:20:26 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:32:46 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	handle_loop(t_data *data)
 {
 	if (data->enemy.pos.x > -1)
-		update_enemy(data);
+		update_enemy(data, &data->enemy);
+	if (data->bullet.pospix.x > -1)
+		update_bullet(data, &data->bullet);
 	return (0);
 }
 
@@ -37,5 +39,7 @@ int	handle_input(int keycode, t_data *data)
 		move_player(data, -1, 0);
 	if (keycode == XK_d || keycode == XK_D || keycode == XK_Right)
 		move_player(data, 1, 0);
+	if (keycode == XK_space)
+		shoot(data, &data->bullet);
 	return (0);
 }

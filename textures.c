@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 19:12:34 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/14 18:43:17 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:58:35 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	init_more_textures(t_data *data)
 			"textures/weaponR2.xpm", &data->dummy, &data->dummy);
 	data->textures.weapon[2] = mlx_xpm_file_to_image(data->mlx,
 			"textures/weaponR3.xpm", &data->dummy, &data->dummy);
+	data->textures.bullet = mlx_xpm_file_to_image(data->mlx,
+			"textures/bullet.xpm", &data->dummy, &data->dummy);
 }
 
 void	init_textures(t_data *data)
@@ -62,4 +64,5 @@ void	clear_textures(t_data *data)
 	mlx_destroy_image(data->mlx, data->textures.enemy);
 	mlx_destroy_image(data->mlx, data->textures.wasted);
 	mlx_destroy_image(data->mlx, data->textures.youwin);
+	mlx_destroy_image(data->mlx, data->textures.bullet);
 }

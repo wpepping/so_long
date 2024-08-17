@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:36:28 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/14 18:35:14 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:32:19 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,11 @@ static void	random_direction(t_data *d, t_coor *dir_new)
 		dir_new->y = -1;
 }
 
-int	update_enemy(t_data *d)
+int	update_enemy(t_data *d, t_enemy	*e)
 {
-	t_enemy	*e;
 	t_coor	pos_old;
 	t_coor	dir_new;
 
-	e = &d->enemy;
 	copy_coor(&dir_new, &e->dir);
 	if (currtime() - e->movetime >= 500)
 	{
@@ -91,6 +89,7 @@ void	move_player(t_data *d, int x, int y)
 {
 	t_coor	pos_old;
 
+	copy_coor(&d->pdir, &(t_coor){x, y});
 	if (d->end_game || d->map[d->ppos.y + y][d->ppos.x + x] == WALL)
 		return ;
 	pos_old.x = d->ppos.x;

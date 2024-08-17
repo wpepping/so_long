@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:27:46 by wouter            #+#    #+#             */
-/*   Updated: 2024/08/14 18:48:09 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:37:02 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ static int	init(t_data *data)
 	data->width = TILE_WIDTH * data->map_width;
 	data->height = TILE_HEIGHT * data->map_height;
 	data->collected = 0;
-	data->enemy.dir.x = 1;
-	data->enemy.dir.y = 0;
+	copy_coor(&data->enemy.dir, &(t_coor){1, 0});
+	copy_coor(&data->pdir, &(t_coor){1, 0});
+	copy_coor(&data->bullet.pospix, &(t_coor){-1, -1});
 	data->end_game = 0;
+	srand(currtime());
 	if (data->mlx == NULL)
 		return (-1);
 	data->window = mlx_new_window(data->mlx, data->width, data->height,
@@ -59,8 +61,7 @@ static int	check_input(t_data *data, int argc, char *argv[])
 	data->window = NULL;
 	data->map = NULL;
 	data->collectibles = 0;
-	data->enemy.pos.x = -1;
-	data->enemy.pos.y = -1;
+	copy_coor(&data->enemy.pos, &(t_coor){-1, -1});
 	data->enemy.movetime = currtime();
 	if (argc != 2)
 		return (err_handl("Usage: so_long <map name>", data));

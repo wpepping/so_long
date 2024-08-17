@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:41:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/14 18:43:41 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:23:56 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ void	draw_tile(t_data *data, t_coor coor)
 		put_tile(data, data->textures.target, coor);
 	else
 		put_tile(data, data->textures.background, coor);
+}
+
+void	draw_bullet(t_data *data, t_bullet *b)
+{
+	if (b->pospix.x != -1)
+		mlx_put_image_to_window(data->mlx, data->window,
+			data->textures.bullet, b->pospix.x, b->pospix.y);
 }
 
 void	init_map(t_data *data)

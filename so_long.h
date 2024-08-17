@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:44 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/14 18:42:28 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:26:18 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 # define PSTART 80
 # define ESTART 78
 
+# define ENEMY_MOVE_TIME 500
+
+# define BULLET_SIZE 4
+# define BULLET_MOVE_TIME 3
+
 typedef struct s_coor
 {
 	int	x;
@@ -57,6 +62,7 @@ typedef struct s_textures
 	void	*enemy;
 	void	*wasted;
 	void	*youwin;
+	void	*bullet;
 }	t_textures;
 
 typedef struct s_enemy
@@ -65,6 +71,14 @@ typedef struct s_enemy
 	t_coor	pos;
 	t_coor	dir;
 }	t_enemy;
+
+typedef struct s_bullet
+{
+	long	movetime;
+	t_coor	pospix;
+	t_coor	postile;
+	t_coor	dir;
+}	t_bullet;
 
 typedef struct s_data
 {
@@ -81,8 +95,10 @@ typedef struct s_data
 	int			dummy;
 	void		*end_game_graphic;
 	t_enemy		enemy;
+	t_bullet	bullet;
 	t_textures	textures;
 	t_coor		ppos;
+	t_coor		pdir;
 }	t_data;
 
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -96,14 +112,21 @@ int		handle_loop(t_data *data);
 void	init_map(t_data *data);
 void	move_player(t_data *data, int x, int y);
 void	draw_tile(t_data *data, t_coor coor);
+void	draw_bullet(t_data *data, t_bullet *bullet);
 int		read_map(t_data *data, char *fname);
 int		is_valid_map(t_data *data);
 int		check_special_tiles(t_data *data);
 void	init_textures(t_data *data);
 void	clear_textures(t_data *data);
 void	ft_putendl_fd(char *s, int fd);
+void	get_color(t_data *data, int c[3], char *result);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);
-int		update_enemy(t_data *data);
+int		update_enemy(t_data *d, t_enemy *e);
+int		update_bullet(t_data *d, t_bullet *b);
 void	end_game(t_data *data, void *image);
+void	shoot(t_data *data, t_bullet *bullet);
+void	kill_enemy(t_data *d, t_enemy *e, t_bullet *b);
+int		update_bullet(t_data *d, t_bullet *b);
 
 #endif
