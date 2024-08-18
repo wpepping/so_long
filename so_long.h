@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:37:44 by wpepping          #+#    #+#             */
-/*   Updated: 2024/08/17 19:26:18 by wouter           ###   ########.fr       */
+/*   Updated: 2024/08/18 17:04:09 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ typedef struct s_textures
 	void	*wasted;
 	void	*youwin;
 	void	*bullet;
+	void	*player_left;
+	void	*player_up;
+	void	*player_down;
+	void	*enemy_dead;
 }	t_textures;
 
 typedef struct s_enemy
@@ -70,6 +74,7 @@ typedef struct s_enemy
 	long	movetime;
 	t_coor	pos;
 	t_coor	dir;
+	int		dead;
 }	t_enemy;
 
 typedef struct s_bullet

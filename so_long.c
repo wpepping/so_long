@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:27:46 by wouter            #+#    #+#             */
-/*   Updated: 2024/08/17 18:37:02 by wouter           ###   ########.fr       */
+/*   Updated: 2024/08/18 16:53:23 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	init(t_data *data)
 	data->width = TILE_WIDTH * data->map_width;
 	data->height = TILE_HEIGHT * data->map_height;
 	data->collected = 0;
+	data->enemy.dead = 0;
 	copy_coor(&data->enemy.dir, &(t_coor){1, 0});
 	copy_coor(&data->pdir, &(t_coor){1, 0});
 	copy_coor(&data->bullet.pospix, &(t_coor){-1, -1});
