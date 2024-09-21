@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:27:46 by wouter            #+#    #+#             */
-/*   Updated: 2024/08/18 16:53:23 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:54:09 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ static int	check_input(t_data *data, int argc, char *argv[])
 	data->enemy.movetime = currtime();
 	if (argc != 2)
 		return (err_handl("Usage: so_long <map name>", data));
-	if (read_map(data, argv[1]) < 0)
-		return (err_handl("Map error", data));
-	if (check_special_tiles(data) < 0)
-		return (err_handl("Map error", data));
-	if (!is_valid_map(data))
+	if (read_map(data, argv[1]) < 0
+		|| data->map_height == 0
+		|| data->map_width == 0
+		|| check_special_tiles(data) < 0
+		|| !is_valid_map(data))
 		return (err_handl("Map error", data));
 	return (0);
 }
