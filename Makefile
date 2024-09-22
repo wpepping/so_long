@@ -22,11 +22,11 @@ $(NAME): $(OBJS)
 
 clean:
 	$(MAKE) clean -C $(LIB_FOLDER)
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME) $(NAME_BONUS)
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

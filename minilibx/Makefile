@@ -61,6 +61,6 @@ clean	:
 	rm -rf $(OBJ_DIR)/ *~ core *.core
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
 
 .PHONY: all check show clean

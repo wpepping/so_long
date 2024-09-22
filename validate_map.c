@@ -6,7 +6,7 @@
 /*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:40:06 by wpepping          #+#    #+#             */
-/*   Updated: 2024/09/21 20:07:01 by wouter           ###   ########.fr       */
+/*   Updated: 2024/09/22 11:45:13 by wouter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_valid_map(t_data *data)
 	return (1);
 }
 
-void	check_special_tile(t_data *data, t_coor *coor, t_tilecount *tc)
+static void	check_special_tile(t_data *data, t_coor *coor, t_tilecount *tc)
 {
 	if (data->map[coor->y][coor->x] == PSTART)
 	{
